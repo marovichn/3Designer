@@ -31,7 +31,7 @@ const Customizer = () => {
   const generateTabContent = () => {
     switch (activeEditorTab) {
       case "colorpicker":
-        return <ColorPicker />;
+        return <ColorPicker handleClick={() => setActiveEditorTab("")} />;
       case "filepicker":
         return <FilePicker />;
       case "aipicker":
@@ -72,7 +72,12 @@ const Customizer = () => {
             <CustomButton
               type='filled'
               title='Go Back'
-              handleClick={() => (state.intro = true)}
+              handleClick={() => {
+                setActiveEditorTab("");
+                setTimeout(() => {
+                  state.intro = true;
+                }, 1);
+              }}
               customStyles='w.fit px-4 py-2.5 font-bold text-sm'
             />
           </motion.div>
