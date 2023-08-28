@@ -40,14 +40,15 @@ const Customizer = () => {
       default:
         state.isFullTexture = false;
         state.isLogoTexture = true;
+        break;
     }
 
-    setActiveFilterTab((prevState)=>{
+    setActiveFilterTab((prevState) => {
       return {
         ...prevState,
         [tabName]: !prevState[tabName],
-      }
-    })
+      };
+    });
   };
 
   const handleDecals = (type, result) => {
@@ -65,14 +66,58 @@ const Customizer = () => {
     setActiveEditorTab("");
   };
 
+  const handleSubmit = async (type) => {
+    if (!prompt || prompt.trim().length === 0)
+      return alert("Please enter a prompt");
+    try {
+      setGeneratingImg(true);
+      const res = await fetch("http://localhost:8080/api/v1/dalle", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          prompt,
+        }),
+      });
+      console.log(res);
+
+      const data = await res.json();
+      console.log(data)
+
+      handleDecals(type, `data:image/png;base64,${data.photo}`);
+    } catch (error) {
+      alert(error);
+    } finally {
+      setGeneratingImg(false);
+      setActiveEditorTab("");
+      setPrompt("");
+    }
+  };
+
   const generateTabContent = () => {
     switch (activeEditorTab) {
       case "colorpicker":
         return <ColorPicker handleClick={() => setActiveEditorTab("")} />;
       case "filepicker":
-        return <FilePicker handleClick={()=>setActiveEditorTab("")} file={file} setFile={setFile} readFile={readFile}/>;
+        return (
+          <FilePicker
+            handleClick={() => setActiveEditorTab("")}
+            file={file}
+            setFile={setFile}
+            readFile={readFile}
+          />
+        );
       case "aipicker":
-        return <AiPicker />;
+        return (
+          <AiPicker
+            prompt={prompt}
+            setPrompt={setPrompt}
+            generatingImg={generatingImg}
+            handleSubmit={handleSubmit}
+            handleClick={() => setActiveEditorTab("")}
+          />
+        );
 
       default:
         return null;
@@ -127,7 +172,7 @@ const Customizer = () => {
               <Tab
                 key={tab.name}
                 tab={tab}
-                handleClick={()=> handleActiveFilterTab(tab.name)}
+                handleClick={() => handleActiveFilterTab(tab.name)}
                 isFilterTab
                 isActiveTab={activeFilterTab[tab.name]}
               />

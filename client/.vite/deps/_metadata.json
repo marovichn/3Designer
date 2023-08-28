@@ -1,0 +1,80 @@
+{
+  "hash": "5f642451",
+  "browserHash": "d1b46c1f",
+  "optimized": {
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "85a23eaa",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "88803ca0",
+      "needsInterop": true
+    },
+    "framer-motion": {
+      "src": "../../node_modules/framer-motion/dist/es/index.mjs",
+      "file": "framer-motion.js",
+      "fileHash": "c3cfc98a",
+      "needsInterop": false
+    },
+    "valtio": {
+      "src": "../../node_modules/valtio/esm/index.mjs",
+      "file": "valtio.js",
+      "fileHash": "8445a42a",
+      "needsInterop": false
+    },
+    "@react-three/fiber": {
+      "src": "../../node_modules/@react-three/fiber/dist/react-three-fiber.esm.js",
+      "file": "@react-three_fiber.js",
+      "fileHash": "e8489466",
+      "needsInterop": false
+    },
+    "@react-three/drei": {
+      "src": "../../node_modules/@react-three/drei/index.js",
+      "file": "@react-three_drei.js",
+      "fileHash": "12b0663b",
+      "needsInterop": false
+    },
+    "react-icons/ai": {
+      "src": "../../node_modules/react-icons/ai/index.esm.js",
+      "file": "react-icons_ai.js",
+      "fileHash": "98df19a0",
+      "needsInterop": false
+    },
+    "react-color": {
+      "src": "../../node_modules/react-color/es/index.js",
+      "file": "react-color.js",
+      "fileHash": "c2a49842",
+      "needsInterop": false
+    },
+    "maath": {
+      "src": "../../node_modules/maath/dist/maath.esm.js",
+      "file": "maath.js",
+      "fileHash": "c166b4cf",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-4WIY6TJ2": {
+      "file": "chunk-4WIY6TJ2.js"
+    },
+    "chunk-E4WVM3SK": {
+      "file": "chunk-E4WVM3SK.js"
+    },
+    "chunk-7ECPBHYW": {
+      "file": "chunk-7ECPBHYW.js"
+    },
+    "chunk-E643A3HC": {
+      "file": "chunk-E643A3HC.js"
+    },
+    "chunk-2PA4WPI3": {
+      "file": "chunk-2PA4WPI3.js"
+    },
+    "chunk-ROME4SDB": {
+      "file": "chunk-ROME4SDB.js"
+    }
+  }
+}
