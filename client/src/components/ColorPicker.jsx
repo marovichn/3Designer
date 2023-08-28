@@ -10,7 +10,7 @@ const ColorPicker = ({ handleClick }) => {
 
   return (
     <>
-      <div className='absolute left-[75px] -top-2 w-full h-full '>
+      <div className='absolute left-[75px] top-1 w-full h-full '>
         <SketchPicker
           color={snap.color}
           disableAlpha
@@ -31,12 +31,12 @@ const ColorPicker = ({ handleClick }) => {
           ]}
         />
       </div>
-      <div className='absolute -top-2 -right-[250px] w-8 h-8'>
+      <div className='absolute top-2 -right-[250px] w-8 h-8'>
         <div
-          className='text-white w-full h-full opacity-80 cursor-pointer'
+          className='text-white w-full h-full cursor-pointer bg-black/80 rounded-full  flex items-center justify-center'
           onClick={handleClick}
         >
-          <AiFillCloseCircle size={25} />
+          <AiFillCloseCircle size={25} className="opacity-80 "/>
         </div>
       </div>
     </>

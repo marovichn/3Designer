@@ -28,12 +28,49 @@ const Customizer = () => {
     stylishShirt: false,
   });
 
+  const handleActiveFilterTab = (tabName) => {
+    switch (tabName) {
+      case "logoShirt":
+        state.isLogoTexture = !activeFilterTab[tabName];
+        break;
+      case "stylishShirt":
+        state.isFullTexture = !activeFilterTab[tabName];
+        break;
+
+      default:
+        state.isFullTexture = false;
+        state.isLogoTexture = true;
+    }
+
+    setActiveFilterTab((prevState)=>{
+      return {
+        ...prevState,
+        [tabName]: !prevState[tabName],
+      }
+    })
+  };
+
+  const handleDecals = (type, result) => {
+    const decalType = DecalTypes[type];
+
+    state[decalType.stateProperty] = result;
+
+    if (!activeFilterTab[decalType.FilterTab]) {
+      handleActiveFilterTab(decalType.filterType);
+    }
+  };
+
+  const readFile = (type) => {
+    reader(file).then((result) => handleDecals(type, result));
+    setActiveEditorTab("");
+  };
+
   const generateTabContent = () => {
     switch (activeEditorTab) {
       case "colorpicker":
         return <ColorPicker handleClick={() => setActiveEditorTab("")} />;
       case "filepicker":
-        return <FilePicker />;
+        return <FilePicker handleClick={()=>setActiveEditorTab("")} file={file} setFile={setFile} readFile={readFile}/>;
       case "aipicker":
         return <AiPicker />;
 
@@ -90,9 +127,9 @@ const Customizer = () => {
               <Tab
                 key={tab.name}
                 tab={tab}
-                handleClick={generateTabContent()}
+                handleClick={()=> handleActiveFilterTab(tab.name)}
                 isFilterTab
-                isActiveTab=''
+                isActiveTab={activeFilterTab[tab.name]}
               />
             ))}
           </motion.div>
