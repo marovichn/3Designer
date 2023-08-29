@@ -17,9 +17,8 @@ import {
   Tab,
 } from "../components/index";
 import { HiFolderDownload } from "react-icons/hi";
-import DownloadButton from "../components/DownloadButton";
 
-const Customizer = ({canvasRef}) => {
+const Customizer = ({downloadScreenshot}) => {
   const snap = useSnapshot(state);
   const [file, setFile] = useState("");
   const [prompt, setPrompt] = useState("");
@@ -29,6 +28,7 @@ const Customizer = ({canvasRef}) => {
     logoShirt: true,
     stylishShirt: false,
   });
+  
 
   const handleActiveFilterTab = (tabName) => {
     switch (tabName) {
@@ -129,8 +129,10 @@ const Customizer = ({canvasRef}) => {
     }
   };
 
+
+
   return (
-    <AnimatePresence>
+    <AnimatePresence >
       {!snap.intro && (
         <>
           <motion.div
@@ -182,7 +184,16 @@ const Customizer = ({canvasRef}) => {
                 isActiveTab={activeFilterTab[tab.name]}
               />
             ))}
-            <DownloadButton canvasRef={canvasRef}/>
+            <div
+              key={"Download"}
+              className='tab-bt rounded-full glassmorphism w-14 h-14 flex items-center justify-center cursor-pointer'
+              onClick={downloadScreenshot}
+              style={{ backgroundColor: snap.color, opacity: 0.5 }}
+            >
+              <div className='h-10 w-10 bg-black/50 rounded-full flex items-center justify-center'>
+                <HiFolderDownload className='w-2/3 h-2/3 text-white -mt-1' />
+              </div>
+            </div>
           </motion.div>
         </>
       )}
