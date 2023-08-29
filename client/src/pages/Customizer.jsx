@@ -16,8 +16,10 @@ import {
   FilePicker,
   Tab,
 } from "../components/index";
+import { HiFolderDownload } from "react-icons/hi";
+import DownloadButton from "../components/DownloadButton";
 
-const Customizer = () => {
+const Customizer = ({canvasRef}) => {
   const snap = useSnapshot(state);
   const [file, setFile] = useState("");
   const [prompt, setPrompt] = useState("");
@@ -86,7 +88,7 @@ const Customizer = () => {
       console.log(res);
 
       const data = await res.json();
-      console.log(data)
+      console.log(data);
 
       handleDecals(type, `data:image/png;base64,${data.photo}`);
     } catch (error) {
@@ -180,6 +182,7 @@ const Customizer = () => {
                 isActiveTab={activeFilterTab[tab.name]}
               />
             ))}
+            <DownloadButton canvasRef={canvasRef}/>
           </motion.div>
         </>
       )}
