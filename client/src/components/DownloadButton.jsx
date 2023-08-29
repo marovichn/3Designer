@@ -7,7 +7,6 @@ import { useScreenshot, createFileName } from "use-react-screenshot";
 
 const DownloadButton = ({canvasRef}) => {
     const ref = useRef();
-const snap = useSnapshot(state);
 const [image, takeScreenShot] = useScreenshot({
   type: "image/jpeg",
   quality: 1.0,
